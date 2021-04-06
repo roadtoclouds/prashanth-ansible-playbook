@@ -21,27 +21,49 @@
     yum: name={{ pkgs }} state=installed
 
   - yum_repository:
-      name: docker-rhel7-repo
-      description: repo for Docker
-      baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
-      enabled: no
-      gpgcheck: no
-
+    name: docker-repo
+    description: repo for Docker
+    baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+    enabled: yes
+    gpgcheck: no
+    
   - yum_repository:
-      name: docker-rhle-repo
-      description: repo for Docker
-      baseurl: https://download.docker.com/linux/rhel/
-      enabled: yes
-      gpgcheck: no
+    name: centos-Extra
+    description: repo for centos Extra Packages
+    baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
+    enabled: yes
+    gpgcheck: no
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
-  - name: Install docker-ce
+  # - yum_repository:
+  #     name: docker-rhel7-repo
+  #     description: repo for Docker
+  #     baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+  #     enabled: no
+  #     gpgcheck: no
+
+  # - yum_repository:
+  #     name: docker-rhle-repo
+  #     description: repo for Docker
+  #     baseurl: https://download.docker.com/linux/rhel/
+  #     enabled: yes
+  #     gpgcheck: no
+
+  - name: docker-ce
     yum:
-      name: docker
-      state: present
-      update_cache: true
+    name: docker-ce
+    state: present
+    update_cache: true
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
   - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
+
+  - name: python3-pip
+    yum:
+    name: python3-pip
+    state: present
+    update_cache: true
 
   # - name: Installing docker sdk
   #   command: pip3 install docker
