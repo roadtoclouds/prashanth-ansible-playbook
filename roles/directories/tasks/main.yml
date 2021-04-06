@@ -1,0 +1,15 @@
+---
+
+- name: create_directories
+  file:
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    path: "{{ item.path }}"
+    mode: "{{ item.mode }}"
+    recurse: yes
+    state: directory
+  become: true
+  loop: "{{ folders_list }}"
+  # when: >
+  #   item.create is defined and
+  #   item.create

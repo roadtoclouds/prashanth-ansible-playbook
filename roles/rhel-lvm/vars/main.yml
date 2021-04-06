@@ -1,0 +1,41 @@
+---
+# vars file for rhel-lvm
+# - hosts: test-nodes
+#   vars:
+lvm_groups:
+  - vgname: test-vg1
+    disks:
+      - /dev/sdf
+    create: true
+    lvnames:
+      - lvname: test_1
+        size: 15g
+        create: true
+        filesystem: ext4
+        mount: true
+        mntp: /mnt/test_1
+      - lvname: test_2
+        size: 10g
+        create: true
+        filesystem: ext4
+        mount: true
+        mntp: /mnt/test_2
+
+  - vgname: test-vg2
+    disks:
+      - /dev/sdg
+    create: true
+    lvnames:
+      - lvname: test_11
+        size: 15g
+        create: true
+        filesystem: ext4
+        mount: true
+        mntp: /mnt/test_11
+      - lvname: test_12
+        size: 10g
+        create: true
+        filesystem: ext4
+        mount: true
+        mntp: /mnt/test_12
+manage_lvm: true

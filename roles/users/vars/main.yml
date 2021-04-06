@@ -1,0 +1,31 @@
+---
+users:
+  - username: user1
+    name: user 1
+    groups: ['wheel','systemd-journal']
+    uid: 1010
+    home: /home/user1
+  - username: user2
+    name: user 2
+    groups: ['wheel','dev1', 'dev2']
+    uid: 1020
+    home: /home/user2
+  - username: user3
+    name: user 3
+    group: 'dev1'
+    groups: ['dev1','dev2', 'dev3']
+    uid: 1030
+    home: /home/user3
+
+
+groups_to_create:
+  - name: dev1
+    gid: 1001
+  - name: dev2
+    gid: 1002
+  - name: dev3
+    gid: 1003
+  - name: dev4
+    gid: 1004
+  - name: dev5
+    gid: 1005

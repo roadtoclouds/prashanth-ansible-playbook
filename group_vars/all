@@ -1,0 +1,5 @@
+# ---
+# username: "rhel7user"
+# user_password: "adminadmin"
+# common_public_key: "xxxxxxxxxx"
+# ginx_port: 80

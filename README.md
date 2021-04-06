@@ -1,2 +1,1 @@
-# prashanth-ansible-playbook
-prashanth-ansible-playbook
+# ansible-roles-rhel7

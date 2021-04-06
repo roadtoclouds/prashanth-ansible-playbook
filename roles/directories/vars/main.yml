@@ -1,0 +1,19 @@
+---
+# vars file for rhel-lvm
+# - hosts: test-nodes
+#   vars:
+folders_list:
+  - owner: user1
+    group: user1
+    path: "/tmp/test123/"
+    mode: 644
+
+  - owner: user2
+    group: user2
+    path: "/var/tmp/testabc/"
+    mode: 755
+
+  - owner: user3
+    group: user2
+    path: "/var/tmp/test123/"
+    mode: 777

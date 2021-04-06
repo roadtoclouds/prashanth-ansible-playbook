@@ -1,0 +1,40 @@
+---
+- name: debian | installing pre-reqs
+  package:
+    name:
+      - lvm2
+      - scsitools
+    state: "present"
+  become: true
+
+- name: debian | install xfs tools
+  package:
+    name: "xfsprogs"
+    state: "present"
+  become: yes
+  loop: "{{ lvm_groups|subelements('lvnames') }}"
+  when: >
+    (
+    (item.1 is defined and item.1 != 'None') and
+    (
+    item.1.filesystem is defined and
+    item.1.filesystem == "xfs"
+    )
+    and
+    (
+    item.1.create is defined and
+    item.1.create
+    )
+    )
+
+- name: debian | checking for scsi devices
+  command: "sg_scan"
+  become: true
+  register: "scsi_devices"
+  changed_when: false
+
+- name: debian | rescanning for new disks added
+  command: "/sbin/rescan-scsi-bus"
+  become: true
+  changed_when: false
+  when: scsi_devices['stdout'] | length
