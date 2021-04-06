@@ -49,9 +49,23 @@
   #     enabled: yes
   #     gpgcheck: no
 
+  - name: containerd.io
+    yum:
+      name: containerd.io
+      state: present
+      update_cache: true
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+
   - name: docker-ce
     yum:
       name: docker-ce
+      state: present
+      update_cache: true
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+
+  - name: docker-ce-cli
+    yum:
+      name: docker-ce-cli
       state: present
       update_cache: true
     when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
