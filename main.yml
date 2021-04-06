@@ -1,14 +1,12 @@
 ---
 - name: Configure RHEL7 Operating System.
-  hosts: webservers
+  hosts: test
   become: yes
   #connection: local
   gather_facts: yes
 
   roles:
     - users
-    # - rhel-lvm
-    # - directories
 
   vars:
     pkgs:
@@ -28,10 +26,7 @@
     baseurl: https://download.docker.com/linux/rhel/
     enabled: yes
     gpgcheck: no
-  # - name: Docker repo
-  #   get_url:
-  #   url: https://download.docker.com/linux/rhel/docker-ce.repo
-  #   dest: /etc/yum.repos.d/docker-ce.repo
+
   - name: Install docker-ce
     yum:
       name: docker-ce
@@ -40,6 +35,19 @@
 
   - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
+
+  - name: Installing docker sdk
+    command: pip3 install docker
+
+
+
+  # - name: Install Docker
+  #     yum: name=docker state=latest
+
+  # - name: Docker repo
+  #   get_url:
+  #   url: https://download.docker.com/linux/rhel/docker-ce.repo
+  #   dest: /etc/yum.repos.d/docker-ce.repo
 
   # - name: python3
   #   yum:
@@ -52,9 +60,3 @@
   #     name: python3-pip
   #     state: present
   #   update_cache: true
-
-  - name: Installing docker sdk
-    command: pip3 install docker
-
-  # - name: Install Docker
-  #     yum: name=docker state=latest
