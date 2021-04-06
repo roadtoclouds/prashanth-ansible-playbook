@@ -24,15 +24,15 @@
       name: docker-repo
       description: repo for Docker
       baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
-      enabled: yes
+      enabled: no
       gpgcheck: no
 
-  # - yum_repository:
-  #   name: docker-repo
-  #   description: repo for Docker
-  #   baseurl: https://download.docker.com/linux/rhel/
-  #   enabled: yes
-  #   gpgcheck: no
+  - yum_repository:
+      name: docker-repo
+      description: repo for Docker
+      baseurl: https://download.docker.com/linux/rhel/
+      enabled: yes
+      gpgcheck: no
 
   - name: Install docker-ce
     yum:
@@ -43,10 +43,8 @@
   - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
 
-  - name: Installing docker sdk
-    command: pip3 install docker
-
-
+  # - name: Installing docker sdk
+  #   command: pip3 install docker
 
   # - name: Install Docker
   #     yum: name=docker state=latest
