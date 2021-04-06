@@ -58,6 +58,7 @@
 
   - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
   - name: python3-pip
     yum:
