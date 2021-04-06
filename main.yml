@@ -33,7 +33,7 @@
       baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
       enabled: yes
       gpgcheck: no
-      when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
   # - yum_repository:
   #     name: docker-rhel7-repo
@@ -54,7 +54,7 @@
       name: docker-ce
       state: present
       update_cache: true
-      when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
   - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
