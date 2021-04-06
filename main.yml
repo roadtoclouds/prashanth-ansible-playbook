@@ -21,14 +21,14 @@
     yum: name={{ pkgs }} state=installed
 
   - yum_repository:
-      name: docker-repo
+      name: docker-rhel7-repo
       description: repo for Docker
       baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
       enabled: no
       gpgcheck: no
 
   - yum_repository:
-      name: docker-repo
+      name: docker-rhle-repo
       description: repo for Docker
       baseurl: https://download.docker.com/linux/rhel/
       enabled: yes
