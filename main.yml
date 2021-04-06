@@ -60,9 +60,6 @@
   #     name: python3-pip
   #     state: present
   #   update_cache: true
-
-  - name: Installing docker sdk
-    command: pip3 install docker
-
+  
   # - name: Install Docker
   #     yum: name=docker state=latest
