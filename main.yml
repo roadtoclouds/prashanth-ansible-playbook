@@ -35,19 +35,12 @@
       gpgcheck: no
     when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
-  # - yum_repository:
-  #     name: docker-rhel7-repo
-  #     description: repo for Docker
-  #     baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
-  #     enabled: no
-  #     gpgcheck: no
-
-  # - yum_repository:
-  #     name: docker-rhle-repo
-  #     description: repo for Docker
-  #     baseurl: https://download.docker.com/linux/rhel/
-  #     enabled: yes
-  #     gpgcheck: no
+  - yum_repository:
+      name: oracle-client
+      description: repo for centos Extra Packages
+      baseurl: http://yum.oracle.com/​repo/​OracleLinux/​OL7/​oracle/​instantclient/​x86_64
+      enabled: yes
+      gpgcheck: no
 
   - name: containerd.io
     yum:
@@ -80,28 +73,29 @@
       state: present
       update_cache: true
 
-  # - name: Installing docker sdk
-  #   command: pip3 install docker
+  - name: oracle-client-19.1
+    yum:
+      name: oracle-instantclient19.10-basic-19.10.0.0.0
+      state: present
+      update_cache: true
 
-  # - name: Install Docker
-  #     yum: name=docker state=latest
+- name: Download perlbrew install.sh
+    become: yes
+    get_url:
+      url: https://install.perlbrew.pl
+      dest: /opt/install.perlbrew.pl
+      mode: 0755
 
-  # - name: Docker repo
-  #   get_url:
-  #   url: https://download.docker.com/linux/rhel/docker-ce.repo
-  #   dest: /etc/yum.repos.d/docker-ce.repo
+- name: Run a script with arguments (using 'cmd' parameter)
+  ansible.builtin.script:
+    cmd: /opt/install.perlbrew.pl
 
-  # - name: python3
-  #   yum:
-  #     name: python3
-  #     state: present
-  #   update_cache: true
-
-  # - name: python3-pip
-  #   yum:
-  #     name: python3-pip
-  #     state: present
-  #   update_cache: true
-
-  # - name: Install Docker
-  #     yum: name=docker state=latest
+- name: Modify bashrc for user
+  lineinfile:
+    dest: ~/.bashrc
+    backup: yes
+    line: "fi;\nsource ~/perl5/perlbrew/etc/bashrc\n"
+    regexp: ''
+    state: present
+    insertafter: EOF
+    create: True
