@@ -6,12 +6,12 @@ users:
     uid: 1010
     home: /home/user1
   - username: user2
-    name: user 2
+    name: user2
     groups: ['wheel','dev1', 'dev2']
     uid: 1020
     home: /home/user2
   - username: user3
-    name: user 3
+    name: user3
     group: 'dev1'
     groups: ['dev1','dev2', 'dev3']
     uid: 1030
