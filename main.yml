@@ -76,7 +76,7 @@
 
   - name: oracle-client-19.1
     yum:
-      name: oracle-instantclient19.10-basic-19.10.0.0.0-1.x86_64.rpm
+      name: oracle-instantclient19.10-basic
       state: present
       update_cache: true
 
