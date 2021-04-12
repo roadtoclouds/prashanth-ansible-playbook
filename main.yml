@@ -74,6 +74,23 @@
       state: present
       update_cache: true
 
+
+  - name: create virtualenv
+    pip:
+      name: "python3 venv"
+      virtualenv: "~/venv"
+      #virtualenv_command: "{{ virtualenv_command | default(omit) }}"
+      virtualenv_python: python3
+      virtualenv_site_packages: yes
+
+  - name: install virtualenv packages
+    pip:
+      name: "{{ item.name | default(item, true) }}"
+      version: "{{ item.version | default(omit, true) }}"
+      state: "{{ item.state | default('present', true) }}"
+      virtualenv: "~/venv"
+    with_items: "{{ virtualenv_pre_packages }}"
+
   - name: oracle-client-19.1
     yum:
       name: oracle-instantclient19.10-basic
@@ -100,3 +117,32 @@
       state: present
       insertafter: EOF
       create: True
+
+  - name: Init perlbrew
+    command: perlbrew init
+
+  - name: Install Perl
+    command: perlbrew install perl-5.18.1
+
+  - name: Switch Perl
+    command: perlbrew switch {{perl_min_version_label}}
+    when: user_perl_version.stdout == '1'
+
+  - name: copy carton setup script
+    copy:
+      src: ./carton-setup.sh
+      dest: /tmp/carton-setup.sh
+      mode: 0755
+
+  - name: Run a script to install carton
+    ansible.builtin.script:
+      cmd: /tmp/carton-setup.sh
+
+  - name: Backup httpd folder
+    command: mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf_bk
+
+  - name: copy files for httpd folder
+    copy:
+      src: /etc/httpd/conf/
+      dest: /etc/httpd/conf/
+

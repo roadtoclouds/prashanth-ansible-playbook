@@ -3,3 +3,12 @@
 # user_password: "adminadmin"
 # common_public_key: "xxxxxxxxxx"
 # ginx_port: 80
+
+virtualenv_path: ~/venv
+virtualenv_os_packages:
+    apt: [libjpeg-dev]
+    yum: [libjpeg-devel]
+virtualenv_pre_packages:
+    - name: Django
+    version: 1.11.26
+    - Pillow
