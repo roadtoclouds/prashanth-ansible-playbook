@@ -138,16 +138,16 @@
     ansible.builtin.script:
       cmd: /tmp/carton-setup.sh
 
-  - name: Backup httpd folder
-    command: mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf_bk
+  # - name: Backup httpd folder
+  #   command: mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf_bk
 
-  - name: copy files for httpd folder
-    copy:
-      src: /etc/httpd/conf/
-      dest: /etc/httpd/conf/
+  # - name: copy files for httpd folder
+  #   copy:
+  #     src: /etc/httpd/conf/
+  #     dest: /etc/httpd/conf/
 
-  - name: copy files for httpd folder
-    copy:
-      src: /etc/httpd/conf/
-      dest: /etc/httpd/conf/
+  # - name: copy files for httpd folder
+  #   copy:
+  #     src: /etc/httpd/conf/
+  #     dest: /etc/httpd/conf/
 
