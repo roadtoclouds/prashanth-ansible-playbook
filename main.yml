@@ -126,8 +126,7 @@
     command: perlbrew install -v perl-5.28.2
 
   - name: Switch Perl
-    command: perlbrew switch {{perl_min_version_label}}
-    when: user_perl_version.stdout == '1'
+    command: perlbrew switch perl-5.28.2
 
   - name: copy carton setup script
     copy:
