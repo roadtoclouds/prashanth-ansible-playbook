@@ -35,7 +35,7 @@
       baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
       enabled: yes
       gpgcheck: no
-    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "8")
 
   - yum_repository:
       name: oracle-client
@@ -49,32 +49,31 @@
       name: containerd.io
       state: present
       update_cache: true
-    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "8")
 
   - name: docker-ce
     yum:
       name: docker-ce
       state: present
       update_cache: true
-    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "8")
 
   - name: docker-ce-cli
     yum:
       name: docker-ce-cli
       state: present
       update_cache: true
-    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "8")
 
   - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
-    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+    when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "8")
 
-  - name: python3-pip
-    yum:
-      name: python3-pip
-      state: present
-      update_cache: true
-
+  # - name: python3-pip
+  #   yum:
+  #     name: python3-pip
+  #     state: present
+  #     update_cache: true
 
   - name: create virtualenv
     pip:
