@@ -116,7 +116,7 @@
       create: True
 
   - name: Source perlbrew
-    shell: "". ~/perl5/perlbrew/etc/bashrc"
+    shell: ". ~/perl5/perlbrew/etc/bashrc"
     become: true
 
   - name: Init perlbrew
