@@ -16,6 +16,7 @@
       - perl
       - strace
       - libaio
+      - virtualenv
       
   tasks:
   - name: Install pre-requisite packages
@@ -145,7 +146,7 @@
     copy:
       src: /etc/httpd/conf/
       dest: /etc/httpd/conf/
-      
+
   - name: copy files for httpd folder
     copy:
       src: /etc/httpd/conf/
