@@ -112,11 +112,14 @@
     lineinfile:
       dest: ~/.bashrc
       backup: yes
-      line: "fi;\nsource ~/perl5/perlbrew/etc/bashrc\n"
+      line: "\nsource ~/perl5/perlbrew/etc/bashrc\n"
       regexp: ''
       state: present
       insertafter: EOF
       create: True
+
+  - name: Source perlbrew
+    command: "source ~/perl5/perlbrew/etc/bashrc"
 
   - name: Init perlbrew
     command: perlbrew init
