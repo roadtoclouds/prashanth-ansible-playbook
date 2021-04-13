@@ -94,33 +94,33 @@
       state: present
       update_cache: true
 
-  - name: Download perlbrew install.sh
-    become: yes
-    get_url:
-      url: https://install.perlbrew.pl
-      dest: /opt/install.perlbrew.pl
-      mode: 0755
+  # - name: Download perlbrew install.sh
+  #   become: yes
+  #   get_url:
+  #     url: https://install.perlbrew.pl
+  #     dest: /opt/install.perlbrew.pl
+  #     mode: 0755
 
-  - name: Run a script with arguments (using 'cmd' parameter)
-    ansible.builtin.script:
-      cmd: /opt/install.perlbrew.pl
+  # - name: Run a script with arguments (using 'cmd' parameter)
+  #   ansible.builtin.script:
+  #     cmd: /opt/install.perlbrew.pl
 
-  - name: Modify bashrc for user
-    lineinfile:
-      dest: ~/.bashrc
-      backup: yes
-      line: "\nsource ~/perl5/perlbrew/etc/bashrc\n"
-      regexp: ''
-      state: present
-      insertafter: EOF
-      create: True
+  # - name: Modify bashrc for user
+  #   lineinfile:
+  #     dest: ~/.bashrc
+  #     backup: yes
+  #     line: "\nsource ~/perl5/perlbrew/etc/bashrc\n"
+  #     regexp: ''
+  #     state: present
+  #     insertafter: EOF
+  #     create: True
 
-  - name: Source perlbrew
-    shell: ". ~/perl5/perlbrew/etc/bashrc"
-    become: true
+  # - name: Source perlbrew
+  #   shell: ". ~/perl5/perlbrew/etc/bashrc"
+  #   become: true
 
-  - name: Init perlbrew
-    command: perlbrew init
+  # - name: Init perlbrew
+  #   command: perlbrew init
 
   # - name: Install Perl
   #   command: perlbrew install 5.28.2
@@ -134,7 +134,7 @@
       dest: /tmp/carton-setup.sh
       mode: 0755
 
-  - name: Run a script to install carton
+  - name: Run a script to install perlbrew and carton
     ansible.builtin.script:
       cmd: /tmp/carton-setup.sh
 

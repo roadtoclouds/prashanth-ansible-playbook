@@ -2,10 +2,10 @@
 
 PERL_STABLE="5.16.1"
 
-# echo '%< --- installing perlbrew ---'
-# echo
-# curl -kL http://install.perlbrew.pl | bash
-# source ~/perl5/perlbrew/etc/bashrc
+echo '%< --- installing perlbrew ---'
+echo
+curl -kL http://install.perlbrew.pl | bash
+source ~/perl5/perlbrew/etc/bashrc
 
 perlbrew install --notest perl-${PERL_STABLE}
 perlbrew install-cpanm
