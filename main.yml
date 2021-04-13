@@ -123,10 +123,10 @@
     command: perlbrew init
 
   - name: Install Perl
-    command: perlbrew install -v perl-5.28.2
+    command: perlbrew install 5.28.2
 
   - name: Switch Perl
-    command: perlbrew switch perl-5.28.2
+    command: perlbrew use 5.28.2
 
   - name: copy carton setup script
     copy:
