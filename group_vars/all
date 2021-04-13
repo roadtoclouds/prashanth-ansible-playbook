@@ -10,5 +10,5 @@ virtualenv_os_packages:
     yum: [libjpeg-devel]
 virtualenv_pre_packages:
     - name: Django
-    version: 1.11.26
+      version: 1.11.26
     - Pillow
