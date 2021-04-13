@@ -145,4 +145,9 @@
     copy:
       src: /etc/httpd/conf/
       dest: /etc/httpd/conf/
+      
+  - name: copy files for httpd folder
+    copy:
+      src: /etc/httpd/conf/
+      dest: /etc/httpd/conf/
 
