@@ -69,11 +69,8 @@
     service: name=docker state=started enabled=yes
     when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
-  # - name: python3-pip
-  #   yum:
-  #     name: python3-pip
-  #     state: present
-  #     update_cache: true
+  - name: export python3 site-package path
+    command: "echo "export PATH="python3 -m site --user-base/bin:$PATH"" >> ~/.bashrc source ~/.bashrc"
 
   - name: create virtualenv
     pip:
