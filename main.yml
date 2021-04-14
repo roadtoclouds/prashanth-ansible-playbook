@@ -16,7 +16,6 @@
       - perl
       - strace
       - libaio
-      - virtualenv
       
   tasks:
   - name: Install pre-requisite packages
@@ -71,6 +70,10 @@
 
   # - name: export python3 site-package path
   #   command: "echo "export PATH="python3 -m site --user-base/bin:$PATH"" >> ~/.bashrc source ~/.bashrc"
+
+  - name: pip3 install virtualenv
+    pip:
+      name: "virtualenv"
 
   - name: create virtualenv
     pip:
