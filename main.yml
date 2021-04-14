@@ -139,9 +139,8 @@
       mode: 0755
 
   - name: Run a script to install perlbrew and carton
-    ansible.builtin.script: /var/tmp/carton-setup.sh
-    args:
-      executable: /usr/bin/bash
+    ansible.builtin.script: 
+      cmd: /var/tmp/carton-setup.sh
 
   # - name: Backup httpd folder
   #   command: mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf_bk
