@@ -83,7 +83,6 @@
       #virtualenv_command: "{{ virtualenv_command | default(omit) }}"
       virtualenv_python: python3
       virtualenv_site_packages: yes
-      executable: pip3
 
   - name: install virtualenv packages
     pip:
@@ -91,7 +90,6 @@
       version: "{{ item.version | default(omit, true) }}"
       state: "{{ item.state | default('present', true) }}"
       virtualenv: "~/venv"
-      executable: pip3
     with_items: "{{ virtualenv_pre_packages }}"
 
   - name: oracle-client-19.1
