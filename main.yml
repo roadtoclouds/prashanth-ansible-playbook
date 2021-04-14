@@ -2,7 +2,7 @@
 - name: Configure RHEL7 Operating System.
   hosts: test
   become: yes
-  connection: local
+  #connection: local
   gather_facts: yes
 
   roles:
