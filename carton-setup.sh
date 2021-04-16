@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PERL_STABLE="5.16.1"
+PERL_STABLE="5.18.1"
 
 echo '%< --- installing perlbrew ---'
 echo
