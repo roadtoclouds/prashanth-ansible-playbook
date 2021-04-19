@@ -7,17 +7,17 @@ echo
 curl -kL http://install.perlbrew.pl | bash
 source ~/perl5/perlbrew/etc/bashrc
 
-perlbrew install --notest perl-${PERL_STABLE}
-perlbrew install-cpanm
-perlbrew switch perl-${PERL_STABLE}
+perlbrew install --notest perl-${PERL_STABLE} -f 
+perlbrew install-cpanm -f
+perlbrew switch perl-${PERL_STABLE} -f
 
 echo '%< --- installing carton ---'
 echo
-perlbrew lib create carton
-perlbrew switch perl-${PERL_STABLE}@carton
+perlbrew lib create carton -f
+perlbrew switch perl-${PERL_STABLE}@carton -f
 source ~/perl5/perlbrew/etc/bashrc
 cpanm Carton
 
 echo '%< --- install finished ! ---'
 echo 'Please add that source line to config'
-echo '$ echo "source ~/perl5/perlbrew/etc/bashrc" >> ~/.bashrc'
+echo "source ~/perl5/perlbrew/etc/bashrc" >> ~/.bashrc
