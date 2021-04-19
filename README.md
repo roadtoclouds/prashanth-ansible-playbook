@@ -16,3 +16,8 @@ source ~/.bashrc
         executable: /bin/bash
 
     - debug: msg="{{ output }}" 
+
+
+docker build -t prashanth-debian:latest .
+docker run --rm -it prashanth-debian
+
