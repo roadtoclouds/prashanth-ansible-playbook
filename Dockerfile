@@ -1,8 +1,8 @@
 FROM debian:latest
 
 RUN apt-get update
-RUN apt-get install aptitude curl bzip2 patch build-essential unzip -y
-RUN aptitude install -y locales
+RUN apt-get install apache2 aptitude curl bzip2 patch build-essential unzip -y
+RUN aptitude install -y locales && apt-get clean
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
 
 RUN mkdir -p /scripts
@@ -31,18 +31,11 @@ ENV PERL5LIB /local/lib/perl5
 # ADD ./cpanfile /cpanfile
 # RUN carton install --cpanfile /cpanfile
 
+COPY example.com.conf /etc/apache2/sites-available/example.com.conf
+
 EXPOSE 80
 EXPOSE 443
 EXPOSE 8080
 
-# Apache gets grumpy about PID files pre-existing
-RUN echo $'#!/bin/sh \n\
-set -e \n\
-\n\
-rm -f /var/run/httpd/httpd.pid \n\
-\n\
-exec httpd -DFOREGROUND "$@" \n\
-' > /usr/local/bin/httpd-foreground
-RUN chmod +x /usr/local/bin/httpd-foreground
-
-CMD ["httpd-foreground"]
+# Start Apache on Docker run
+CMD ["apachectl", "-D", "FOREGROUND"]
