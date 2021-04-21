@@ -32,6 +32,7 @@ ENV PERL5LIB /local/lib/perl5
 # RUN carton install --cpanfile /cpanfile
 
 COPY example.com.conf /etc/apache2/sites-available/example.com.conf
+COPY servername.conf /etc/apache2/conf-available/servername.conf
 
 EXPOSE 80
 EXPOSE 443
