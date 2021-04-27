@@ -19,7 +19,7 @@
       
   tasks:
   - name: Install pre-requisite packages
-    yum: name={{ pkgs }} state=installed
+    apt: name={{ pkgs }} state=installed
 
   - yum_repository:
       name: docker-repo
@@ -155,3 +155,13 @@
   #     src: /etc/httpd/conf/
   #     dest: /etc/httpd/conf/
 
+
+#  - name: Update Static IP
+#     replace:
+#       dest: /etc/sysconfig/network-scripts/ifcfg-eth0
+#       regexp: '10.10.10.11'
+#       replace: '10.10.20.11'
+#       backup: yes
+  
+#   - name: Restart Network service
+#     service: name=docker state=started enabled=yes

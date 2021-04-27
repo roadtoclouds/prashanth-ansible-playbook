@@ -1,31 +1,30 @@
 ---
 users:
-  - username: user1
-    name: user1
-    groups: ['wheel','systemd-journal']
+  - username:  fts-user
+    name:  fts-user
+    groups: ['fts-admin', 'fts-dev', 'fts-ops']
     uid: 1010
-    home: /home/user1
-  - username: user2
-    name: user2
-    groups: ['wheel','dev1', 'dev2']
+    home: /home/fts-user
+  - username: prasbask
+    name: prasbask
+    groups: ['fts-admin', 'fts-dev', 'fts-ops']
     uid: 1020
-    home: /home/user2
-  - username: user3
-    name: user3
-    group: 'dev1'
+    home: /home/prasbask
+  - username: sara
+    name: sara
+    groups: ['fts-admin', 'fts-dev', 'fts-ops']
+    uid: 1030
+    home: /home/sara
+  - username: vish
+    name: vish
     groups: ['dev1','dev2', 'dev3']
     uid: 1030
-    home: /home/user3
-
+    home: /home/vish
 
 groups_to_create:
-  - name: dev1
+  - name: fts-admin
     gid: 1001
-  - name: dev2
+  - name: fts-dev
     gid: 1002
-  - name: dev3
+  - name:  fts-ops
     gid: 1003
-  - name: dev4
-    gid: 1004
-  - name: dev5
-    gid: 1005
