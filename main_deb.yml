@@ -74,6 +74,6 @@
 
   - name: Run a script to install perlbrew and carton
     ansible.builtin.script: 
-      cmd: /var/tmp/carton-setup.sh
+    cmd: /var/tmp/carton-setup.sh
 
  
