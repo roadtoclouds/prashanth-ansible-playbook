@@ -60,7 +60,7 @@
       mode: 0755
 
   - name: Run a script to install OracleInstantClient
-    ansible.builtin.script: /var/tmp/instantclient-install.sh
+    ansible.builtin.shell: /var/tmp/instantclient-install.sh
 
   - name: Download perlbrew install.sh
     become: yes
@@ -76,4 +76,4 @@
       mode: 0755
 
   - name: Run a script to install perlbrew and carton
-    ansible.builtin.script: /var/tmp/carton-setup.sh
+    ansible.builtin.shell: /var/tmp/carton-setup.sh
