@@ -18,7 +18,7 @@ users:
   - username: vish
     name: vish
     groups: ['fts-admin', 'fts-dev', 'fts-ops']
-    uid: 1030
+    uid: 1040
     home: /home/vish
 
 groups_to_create:
