@@ -1,0 +1,167 @@
+# ---
+# - name: Configure RHEL7 Operating System.
+#   hosts: test
+#   become: yes
+#   #connection: local
+#   gather_facts: yes
+
+#   roles:
+#     - users
+
+#   vars:
+#     pkgs:
+#       - httpd
+#       - python3
+#       - python3-pip
+#       - perl
+#       - strace
+#       - libaio
+      
+#   tasks:
+#   - name: Install pre-requisite packages
+#     apt: name={{ pkgs }} state=installed
+
+#   - yum_repository:
+#       name: docker-repo
+#       description: repo for Docker
+#       baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+#       enabled: yes
+#       gpgcheck: no
+    
+#   - yum_repository:
+#       name: centos-Extra
+#       description: repo for centos Extra Packages
+#       baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
+#       enabled: yes
+#       gpgcheck: no
+#     when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+
+#   - yum_repository:
+#       name: oracle-client
+#       description: repo for centos Extra Packages
+#       baseurl: https://yum.oracle.com/repo/OracleLinux/OL7/oracle/instantclient/x86_64/
+#       enabled: yes
+#       gpgcheck: no
+
+#   - name: containerd.io
+#     yum:
+#       name: containerd.io
+#       state: present
+#       update_cache: true
+#     when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+
+#   - name: docker-ce
+#     yum:
+#       name: docker-ce
+#       state: present
+#       update_cache: true
+#     when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+
+#   - name: docker-ce-cli
+#     yum:
+#       name: docker-ce-cli
+#       state: present
+#       update_cache: true
+#     when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+
+#   - name: Start and enable the Docker daemon
+#     service: name=docker state=started enabled=yes
+#     when: (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+
+#   # - name: export python3 site-package path
+#   #   command: "echo "export PATH="python3 -m site --user-base/bin:$PATH"" >> ~/.bashrc source ~/.bashrc"
+
+#   - name: pip3 install virtualenv
+#     pip:
+#       name: "virtualenv"
+#       executable: pip3
+
+#   - name: create virtualenv
+#     pip:
+#       name: "boto3"
+#       virtualenv: "~/venv"
+#       #virtualenv_command: "{{ virtualenv_command | default(omit) }}"
+#       virtualenv_python: python3
+#       virtualenv_site_packages: yes
+
+#   - name: install virtualenv packages
+#     pip:
+#       name: "{{ item.name | default(item, true) }}"
+#       version: "{{ item.version | default(omit, true) }}"
+#       state: "{{ item.state | default('present', true) }}"
+#       virtualenv: "~/venv"
+#     with_items: "{{ virtualenv_pre_packages }}"
+
+#   - name: oracle-client-19.1
+#     yum:
+#       name: oracle-instantclient19.10-basic
+#       state: present
+#       update_cache: true
+
+#   # - name: Download perlbrew install.sh
+#   #   become: yes
+#   #   get_url:
+#   #     url: https://install.perlbrew.pl
+#   #     dest: /opt/install.perlbrew.pl
+#   #     mode: 0755
+
+#   # - name: Run a script with arguments (using 'cmd' parameter)
+#   #   ansible.builtin.script:
+#   #     cmd: /opt/install.perlbrew.pl
+
+#   # - name: Modify bashrc for user
+#   #   lineinfile:
+#   #     dest: ~/.bashrc
+#   #     backup: yes
+#   #     line: "\nsource ~/perl5/perlbrew/etc/bashrc\n"
+#   #     regexp: ''
+#   #     state: present
+#   #     insertafter: EOF
+#   #     create: True
+
+#   # - name: Source perlbrew
+#   #   shell: ". ~/perl5/perlbrew/etc/bashrc"
+#   #   become: true
+
+#   # - name: Init perlbrew
+#   #   command: perlbrew init
+
+#   # - name: Install Perl
+#   #   command: perlbrew install 5.28.2
+
+#   # - name: Switch Perl
+#   #   command: perlbrew use 5.28.2
+
+#   - name: copy carton setup script
+#     copy:
+#       src: carton-setup.sh
+#       dest: /var/tmp/carton-setup.sh
+#       mode: 0755
+
+#   - name: Run a script to install perlbrew and carton
+#     ansible.builtin.script: 
+#       cmd: /var/tmp/carton-setup.sh
+
+#   # - name: Backup httpd folder
+#   #   command: mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf_bk
+
+#   # - name: copy files for httpd folder
+#   #   copy:
+#   #     src: /etc/httpd/conf/
+#   #     dest: /etc/httpd/conf/
+
+#   # - name: copy files for httpd folder
+#   #   copy:
+#   #     src: /etc/httpd/conf/
+#   #     dest: /etc/httpd/conf/
+
+
+# #  - name: Update Static IP
+# #     replace:
+# #       dest: /etc/sysconfig/network-scripts/ifcfg-eth0
+# #       regexp: '10.10.10.11'
+# #       replace: '10.10.20.11'
+# #       backup: yes
+  
+# #   - name: Restart Network service
+# #     service: name=docker state=started enabled=yes
