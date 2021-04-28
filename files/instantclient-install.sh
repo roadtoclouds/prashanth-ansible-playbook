@@ -11,9 +11,9 @@ ln -sf /opt/oracle/instantclient/libclntsh.so.12.1 /opt/oracle/instantclient/lib
 ln -sf /opt/oracle/instantclient/libocci.so.12.1 /opt/oracle/instantclient/libocci.so
 mkdir -p /opt/oracle/instantclient/network/admin
 
-echo "export LD_LIBRARY_PATH /opt/oracle/instantclient:/usr/lib:/usr/lib64" >> ~/.bashrc
-echo "export /opt/oracle/instantclient" >> ~/.bashrc
-echo "export TNS_ADMIN /opt/oracle/instantclient/network/admin" >> ~/.bashrc
-echo "export PERL5LIB /local/lib/perl5" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=/opt/oracle/instantclient:/usr/lib:/usr/lib64" >> ~/.bashrc
+echo "export ORACLE_HOME=/opt/oracle/instantclient" >> ~/.bashrc
+echo "export TNS_ADMIN=/opt/oracle/instantclient/network/admin" >> ~/.bashrc
+echo "export PERL5LIB=/local/lib/perl5" >> ~/.bashrc
 
 source ~/.bashrc

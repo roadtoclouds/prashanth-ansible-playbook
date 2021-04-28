@@ -75,5 +75,5 @@
       dest: /var/tmp/carton-setup.sh
       mode: 0755
 
-  # - name: Run a script to install perlbrew and carton
-  #   ansible.builtin.shell: "/var/tmp/carton-setup.sh"
+  - name: Run a script to install perlbrew and carton
+    shell: "/var/tmp/carton-setup.sh"
