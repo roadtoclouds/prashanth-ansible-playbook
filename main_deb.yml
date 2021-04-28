@@ -15,7 +15,6 @@
       - python3-pip
       - perl
       - strace
-      # - libaio
       
   tasks:
   - name: Install pre-requisite packages
