@@ -24,7 +24,7 @@
       
   tasks:
   - name: Install pre-requisite packages
-    apt: name={{ pkgs }} state=installed
+    apt: name={{ pkgs }} state=present
 
   - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
@@ -59,8 +59,8 @@
       dest: /var/tmp/
       mode: 0755
 
-  # - name: Run a script to install OracleInstantClient
-  #   ansible.builtin.shell: "/var/tmp/instantclient-install.sh"
+  - name: Run a script to install OracleInstantClient
+    shell: "/var/tmp/instantclient-install.sh"
 
   - name: Download perlbrew install.sh
     become: yes
