@@ -24,8 +24,9 @@
       
   tasks:
   - name: Install pre-requisite packages
-    apt: name={{ pkgs }} state=latest
-    update_cache: yes
+    apt: 
+      name={{ pkgs }} state=latest
+      update_cache: yes
 
   - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
