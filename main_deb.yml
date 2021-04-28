@@ -30,7 +30,7 @@
     service: name=docker state=started enabled=yes
 
   - name: export python3 site-package path
-    command: "echo "export PATH="python3 -m site --user-base/bin:$PATH"" >> ~/.bashrc source ~/.bashrc"
+    command: "echo 'export PATH='python3 -m site --user-base/bin:$PATH'' >> ~/.bashrc source ~/.bashrc"
 
   - name: pip3 install virtualenv
     pip:
